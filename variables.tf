@@ -20,7 +20,7 @@ variable "custom_tags" {
 }
 variable "trusted_principals" {
   description = "Trusted principals"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "bucket_force_destroy" {

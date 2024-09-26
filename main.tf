@@ -40,8 +40,8 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
         {
           Sid : "TrustedPrincipals",
           Effect : "Deny",
-          Principal: "*",
-          Action:[
+          Principal : "*",
+          Action : [
             "s3:PutObject",
             "s3:PutObjectAcl",
             "s3:GetObject",
@@ -50,14 +50,14 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
             "s3:GetBucketPolicy",
             "s3:PutBucketPolicy",
             "s3:DeleteBucketPolicy"
-         ],
+          ],
           Resource : [
             "${aws_s3_bucket.terraform_state.arn}/*",
             "${aws_s3_bucket.terraform_state.arn}",
           ]
-          Condition: {
-            StringNotLike: {
-              "aws:PrincipalArn": var.trusted_principals
+          Condition : {
+            StringNotLike : {
+              "aws:PrincipalArn" : var.trusted_principals
             }
           }
         },
@@ -114,15 +114,15 @@ resource "aws_dynamodb_table" "terraform_locks" {
 
 resource "aws_dynamodb_resource_policy" "example" {
   resource_arn = aws_dynamodb_table.terraform_locks.arn
-  policy       = jsonencode(
+  policy = jsonencode(
     {
-      "Version": "2012-10-17",
-      "Statement": [
+      "Version" : "2012-10-17",
+      "Statement" : [
         {
-          "Sid": "TrustedPrincipals",
+          "Sid" : "TrustedPrincipals",
           Effect : "Deny",
-          Principal: "*",
-          Action:[
+          Principal : "*",
+          Action : [
             "dynamodb:DeleteTable",
             "dynamodb:UpdateTable",
             "dynamodb:GetItem",
@@ -132,13 +132,13 @@ resource "aws_dynamodb_resource_policy" "example" {
             "dynamodb:GetResourcePolicy",
             "dynamodb:DeleteResourcePolicy",
             "dynamodb:PutResourcePolicy"
-         ],
-          "Resource": [
+          ],
+          "Resource" : [
             "arn:aws:dynamodb:${var.aws_region}:${var.aws_account_id}:table/${var.aws_backend_name}"
           ]
-          "Condition": {
-            "StringNotLike": {
-              "aws:PrincipalArn": var.trusted_principals
+          "Condition" : {
+            "StringNotLike" : {
+              "aws:PrincipalArn" : var.trusted_principals
             }
           }
         }
