@@ -6,7 +6,7 @@ Terraform module to deploy an AWS backend with restrictive policies.
 
 ```hcl
 terraform {
-  source = "tfr:///yivolve/aws-backend/aws?version=<tag version>"
+  source = "tfr:///yivolve/backend/aws?version=<tag version>"
 }
 
 <optional terragrunt's configuration goes here>
