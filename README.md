@@ -17,3 +17,11 @@ inputs = {
 }
 
 ```
+
+> [!TIP]
+> If by any change you get locked out from your s3 bucket and dynamodb table run the commands below from the cloudshell using your root account:
+>
+>```bash
+> aws s3api delete-bucket-policy --bucket <bucket name>
+> aws dynamodb delete-resource-policy --resource-arn <table arn>
+>```
