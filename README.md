@@ -1,2 +1,19 @@
-# terraform-aws-backend
-Terraform module to deploy a Terraform AWS backend with tight restrictive policies so only the intended identities can modify the state files.
+# terraform-flux-github
+
+Terraform module to deploy an AWS backend with restrictive policies.
+
+## How to use this module with Terragrunt
+
+```hcl
+terraform {
+  source = "tfr:///yivolve/aws-backend/aws?version=<tag version>"
+}
+
+<optional terragrunt's configuration goes here>
+
+inputs = {
+  path = <path>
+  ...rest of the inputs go here
+}
+
+```
