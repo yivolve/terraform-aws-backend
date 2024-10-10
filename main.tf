@@ -56,7 +56,7 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
             "${aws_s3_bucket.terraform_state.arn}",
           ]
           Condition : {
-            StringNotLike : {
+            "ForAllValues:StringNotLike" : {
               "aws:PrincipalArn" : var.trusted_principals
             }
           }
@@ -137,7 +137,7 @@ resource "aws_dynamodb_resource_policy" "example" {
             "arn:aws:dynamodb:${var.aws_region}:${var.aws_account_id}:table/${var.aws_backend_name}"
           ]
           "Condition" : {
-            "StringNotLike" : {
+            "ForAllValues:StringNotLike" : {
               "aws:PrincipalArn" : var.trusted_principals
             }
           }
